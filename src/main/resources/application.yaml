@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: sto-was-local
+  datasource:
+    url: ${MYSQL_URL}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  flyway:
+    enabled: false
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+
+server:
+  shutdown: graceful
+  tomcat:
+    threads:
+      min-spare: 15
+      max: 200
+    accept-count: 200
+  compression:
+    enabled: true
+    mime-types: text/html,text/plain,text/css,application/javascript,application/json
+    min-response-size: 1024
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
